@@ -83,7 +83,13 @@ try:
             )
         )
         cython_found = False
-    cython_linetrace = bool(os.environ.get("CYTHON_TRACE_NOGIL", False))
+    if Version(Cython.__version__) >= Version("3.1.0"):
+        # Cython 3.1+ has worker crash bugs with linetrace (Issue #5057)
+        cython_linetrace = False
+    else:
+        cython_linetrace = bool(
+            os.environ.get("CYTHON_TRACE_NOGIL", False)
+        )
 except ImportError:
     cython_found = False
     if not is_release:
