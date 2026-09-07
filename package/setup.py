@@ -353,8 +353,9 @@ def extensions(config):
         mathlib = ["m"]
 
     if cython_linetrace:
-        extra_compile_args.append("-DCYTHON_TRACE_NOGIL")
-        cpp_extra_compile_args.append("-DCYTHON_TRACE_NOGIL")
+        extra_compile_args.extend(["-DCYTHON_TRACE_NOGIL=1", "-DCYTHON_TRACE=1"])
+        cpp_extra_compile_args.extend(["-DCYTHON_TRACE_NOGIL=1", "-DCYTHON_TRACE=1"])
+        encore_compile_args.extend(["-DCYTHON_TRACE_NOGIL=1", "-DCYTHON_TRACE=1"])
 
     libdcd = MDAExtension(
         "MDAnalysis.lib.formats.libdcd",
