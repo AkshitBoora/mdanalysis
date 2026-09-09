@@ -87,9 +87,7 @@ try:
         # Cython 3.1+ has worker crash bugs with linetrace (Issue #5057)
         cython_linetrace = False
     else:
-        cython_linetrace = bool(
-            os.environ.get("CYTHON_TRACE_NOGIL", False)
-        )
+        cython_linetrace = bool(os.environ.get("CYTHON_TRACE_NOGIL", False))
 except ImportError:
     cython_found = False
     if not is_release:
